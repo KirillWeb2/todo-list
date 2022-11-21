@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { TodoList } from "./components/TodoList";
+import { Wrapper } from "./components/Wrapper";
+import { db, postConverter } from "./firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { collection } from "firebase/firestore";
 
-function App() {
+export const App: React.FC = () => {
+  const ref = collection(db, "todos").withConverter(postConverter);
+  const [snapshot, loading] = useCollectionData(ref);
+
+  if (loading || !snapshot)
+    return (
+      <h1 className="text-3xl font-semibold absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+        Loading...
+      </h1>
+    );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Wrapper>
+        <TodoList todos={snapshot} />
+      </Wrapper>
+    </>
   );
-}
-
-export default App;
+};

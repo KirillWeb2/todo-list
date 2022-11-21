@@ -1,13 +1,77 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input {
+  padding: 4px;
+  outline: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.514);
+}
+
+button {
+  cursor: pointer;
+  background-color: #80808069;
+  padding: 4px 12px;
+  border-radius: 10px;
+  box-shadow: 1px -1px 1px grey;
+  transition: all 0.2s;
+}
+button:active {
+  box-shadow: -1px 1px 0px grey;
+}
+
+button:disabled {
+  opacity: 0.6;
+}
+
+.btn-green {
+  color: white;
+  box-shadow: 1px -1px 1px #176422;
+  background-color: #28aa39;
+}
+
+.btn-green:active {
+  background-color: #176422;
+}
+
+.btn-red {
+  color: white;
+  box-shadow: 1px -1px 1px #c02929;
+  background-color: #f36161;
+}
+
+.btn-red:active {
+  background-color: #c02929;
+}
+
+.btn-orange {
+  color: white;
+  box-shadow: 1px -1px 1px rgb(187, 127, 14);
+  background-color: rgb(247, 168, 22);
+}
+
+.btn-orange:active {
+  background-color: rgb(187, 127, 14);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100000;
+  background-color: rgba(0, 0, 0, 0.608);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
